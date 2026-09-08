@@ -17,13 +17,13 @@
     },
     "packages/language-server": {
       "name": "@aihu/language-server",
-      "version": "0.4.1",
+      "version": "0.4.2",
       "bin": {
         "aihu-language-server": "./dist/bin.js",
       },
       "dependencies": {
         "@aihu/compiler": "^1.3.6",
-        "@aihu/tsc": "^0.3.3",
+        "@aihu/tsc": "^0.3.4",
         "@volar/language-core": "2.4.28",
         "@volar/language-server": "2.4.28",
         "@volar/source-map": "2.4.28",
@@ -37,7 +37,7 @@
     },
     "packages/tsc": {
       "name": "@aihu/tsc",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "bin": {
         "aihu-tsc": "./bin/aihu-tsc.mjs",
       },
@@ -54,7 +54,7 @@
       "name": "vscode-aihu",
       "version": "1.0.0",
       "dependencies": {
-        "@aihu/language-server": "^0.4.1",
+        "@aihu/language-server": "^0.4.2",
         "vscode-languageclient": "^9.0.1",
       },
       "devDependencies": {

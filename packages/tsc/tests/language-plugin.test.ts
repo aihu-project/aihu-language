@@ -18,7 +18,6 @@ function virtualCodeFor(source: string, fileName = '/x/thing.aihu') {
     fileName,
     'aihu',
     ts.ScriptSnapshot.fromString(source),
-    // biome-ignore lint/suspicious/noExplicitAny: the codegen context is unused here.
     {} as any,
   )
 }

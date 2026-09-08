@@ -21,7 +21,7 @@ npm install @aihu/tsc
 bun add @aihu/tsc
 ```
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: install -->
 
@@ -32,12 +32,12 @@ bun add @aihu/tsc
 
 | | |
 |---|---|
-| **Version** | `0.3.3` |
+| **Version** | `0.3.4` |
 | **Tier** | D — Toolchain — `aihu-tsc` type-checker for .aihu Single-File Components |
 | **Published files** | 4 entries |
 | **License** | MIT |
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: stats -->
 
@@ -50,7 +50,7 @@ bun add @aihu/tsc
 |---|---|---|
 | `.` | `./dist/index.js` | `—` |
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: exports -->
 
@@ -69,7 +69,7 @@ bun add @aihu/tsc
 
 - `typescript` — `>=5.0.0`
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: deps -->
 
@@ -82,7 +82,7 @@ bun add @aihu/tsc
 - [@aihu/language-server](https://github.com/aihu-project/aihu-language/tree/main/packages/language-server)
 - [Aihu framework root](https://github.com/aihu-project/aihu)
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: see-also -->
 
@@ -93,6 +93,6 @@ bun add @aihu/tsc
 
 MIT — see [LICENSE](../../LICENSE).
 
-<sub><i>Auto-generated against `@aihu/tsc@0.3.3`.</i></sub>
+<sub><i>Auto-generated against `@aihu/tsc@0.3.4`.</i></sub>
 
 <!-- END_AUTOGEN: license -->

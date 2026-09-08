@@ -29,6 +29,7 @@
     "package": "bun run package:npm && bun run package:vscode",
     "package:npm": "bun pm pack --dry-run --cwd packages/tsc && bun pm pack --dry-run --cwd packages/language-server",
     "package:vscode": "bun run --cwd packages/vscode-aihu vsce:package -- --no-dependencies --out /tmp/aihu-language.vsix",
+    "check:release-version": "bun scripts/check-release-version.ts",
     "check": "bun run lint && bun run check:boundaries && bun run typecheck && bun run test && bun run build && bun run package"
   },
   "devDependencies": {

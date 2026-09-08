@@ -46,7 +46,7 @@ npm install @aihu/language-server
 bun add @aihu/language-server
 ```
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: install -->
 
@@ -57,12 +57,12 @@ bun add @aihu/language-server
 
 | | |
 |---|---|
-| **Version** | `0.4.1` |
+| **Version** | `0.4.2` |
 | **Tier** | D — Toolchain — cross-editor Language Server for .aihu SFCs |
 | **Published files** | 3 entries |
 | **License** | MIT |
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: stats -->
 
@@ -77,7 +77,7 @@ bun add @aihu/language-server
 | `./core` | `./dist/core/index.js` | `—` |
 | `./package.json` | `./package.json` | — |
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: exports -->
 
@@ -97,7 +97,7 @@ bun add @aihu/language-server
 - `typescript` — `^5.6.2`
 - `volar-service-typescript` — `0.0.71`
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: deps -->
 
@@ -111,7 +111,7 @@ bun add @aihu/language-server
 - [vscode-aihu](https://github.com/aihu-project/aihu-language/tree/main/packages/vscode-aihu)
 - [Aihu framework root](https://github.com/aihu-project/aihu)
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: see-also -->
 
@@ -122,6 +122,6 @@ bun add @aihu/language-server
 
 MIT — see [LICENSE](../../LICENSE).
 
-<sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
+<sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
 <!-- END_AUTOGEN: license -->

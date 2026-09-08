@@ -1,0 +1,127 @@
+name: Publish language packages
+
+on:
+  push:
+    tags:
+      - 'language-v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  NPM_REGISTRY: https://registry.npmjs.org
+
+jobs:
+  verify:
+    name: Verify coordinated release
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: ${{ env.NPM_REGISTRY }}
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Verify exact release tag and package order
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: bun run check:release-version "$RELEASE_TAG"
+      - name: Run full release gate
+        run: |
+          bun run check
+          npm pack --dry-run --workspace @aihu/tsc
+          npm pack --dry-run --workspace @aihu/language-server
+      - name: Verify npm credentials
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$NODE_AUTH_TOKEN" || {
+            echo 'NPM_TOKEN repository secret is required'
+            exit 1
+          }
+          npm whoami --registry "$NPM_REGISTRY"
+
+  publish-tsc:
+    name: Publish @aihu/tsc
+    needs: verify
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: ${{ env.NPM_REGISTRY }}
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Publish exact tsc version if needed
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          package='@aihu/tsc'
+          version="$(node -p "require('./packages/tsc/package.json').version")"
+          error_file="$(mktemp)"
+          trap 'rm -f "$error_file"' EXIT
+          if npm view "$package@$version" version --registry "$NPM_REGISTRY" >/dev/null 2>"$error_file"; then
+            echo "$package@$version already exists; keeping the release idempotent"
+          elif grep -Eq 'E404|404 Not Found' "$error_file"; then
+            npm publish packages/tsc --access public --registry "$NPM_REGISTRY"
+          else
+            cat "$error_file"
+            exit 1
+          fi
+
+  publish-language-server:
+    name: Publish @aihu/language-server
+    needs: publish-tsc
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: ${{ env.NPM_REGISTRY }}
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Verify the first package is available
+        run: |
+          set -euo pipefail
+          version="$(node -p "require('./packages/tsc/package.json').version")"
+          npm view "@aihu/tsc@$version" version --registry "$NPM_REGISTRY"
+      - name: Publish exact language-server version if needed
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          package='@aihu/language-server'
+          version="$(node -p "require('./packages/language-server/package.json').version")"
+          error_file="$(mktemp)"
+          trap 'rm -f "$error_file"' EXIT
+          if npm view "$package@$version" version --registry "$NPM_REGISTRY" >/dev/null 2>"$error_file"; then
+            echo "$package@$version already exists; keeping the release idempotent"
+          elif grep -Eq 'E404|404 Not Found' "$error_file"; then
+            npm publish packages/language-server --access public --registry "$NPM_REGISTRY"
+          else
+            cat "$error_file"
+            exit 1
+          fi
