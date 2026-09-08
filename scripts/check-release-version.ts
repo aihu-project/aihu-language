@@ -36,9 +36,10 @@ export function checkReleaseVersion(tag: string): void {
     )
   }
 
-  if (server.dependencies?.['@aihu/tsc'] !== 'workspace:*') {
+  const expectedTscRange = `^${tsc}`
+  if (server.dependencies?.['@aihu/tsc'] !== expectedTscRange) {
     throw new Error(
-      `@aihu/language-server must consume the release-local @aihu/tsc workspace; found ${String(server.dependencies?.['@aihu/tsc'])}`,
+      `@aihu/language-server must consume @aihu/tsc ${expectedTscRange}; found ${String(server.dependencies?.['@aihu/tsc'])}`,
     )
   }
 

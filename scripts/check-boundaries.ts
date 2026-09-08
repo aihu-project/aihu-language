@@ -9,7 +9,7 @@ type PackageJson = {
 const packages = [
   ['packages/tsc/package.json', '@aihu/compiler', '^1.3.6'],
   ['packages/language-server/package.json', '@aihu/compiler', '^1.3.6'],
-  ['packages/language-server/package.json', '@aihu/tsc', 'workspace:*'],
+  ['packages/language-server/package.json', '@aihu/tsc', '^0.3.4'],
   ['packages/vscode-aihu/package.json', '@aihu/language-server', 'workspace:*'],
 ] as const
 

@@ -93,7 +93,7 @@ bun add @aihu/language-server
 - `@volar/language-server` — `2.4.28`
 - `@volar/source-map` — `2.4.28`
 - `vscode-uri` — `3.1.0`
-- `@aihu/tsc` — `workspace:*`
+- `@aihu/tsc` — `^0.3.4`
 - `typescript` — `^5.6.2`
 - `volar-service-typescript` — `0.0.71`
 

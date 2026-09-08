@@ -26,8 +26,9 @@ bun install --frozen-lockfile
 bun run check
 ```
 
-`bun run check` runs lint, boundary checks, TypeScript checks, package tests,
-all builds, npm pack dry-runs, and a VS Code extension package dry-run.
+`bun run check` runs lint, boundary checks, packed npm-manifest checks, TypeScript
+checks, package tests, all builds, npm pack dry-runs, and a VS Code extension
+package dry-run.
 
 ## Releases
 
