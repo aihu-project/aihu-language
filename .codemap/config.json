@@ -1,0 +1,38 @@
+{
+  "only": ["ts", "mjs", "json", "md", "yml", "yaml"],
+  "exclude": ["dist", "coverage", "node_modules", "*.vsix", ".moon"],
+  "depth": 5,
+  "routing": {
+    "subsystems": [
+      {
+        "name": "published-compiler-boundary",
+        "paths": [
+          "packages/tsc/src/**",
+          "packages/language-server/src/**",
+          "packages/tsc/package.json",
+          "packages/language-server/package.json",
+          "scripts/check-boundaries.ts"
+        ],
+        "keywords": ["@aihu/compiler", "compileSidecar", "resolveCompilerBinary", "codemods"],
+        "docs": ["README.md", "packages/tsc/README.md", "packages/language-server/README.md"],
+        "note": "The compiler edge is a package-resolution contract, not an importable local source edge; codemap cannot see registry version compatibility or detect a reintroduced root-source path."
+      },
+      {
+        "name": "editor-server-version-seam",
+        "paths": ["packages/tsc/**", "packages/language-server/**", "packages/vscode-aihu/**"],
+        "keywords": [
+          "@aihu/tsc",
+          "@aihu/language-server",
+          "vscode-languageclient",
+          "aihu-language-server"
+        ],
+        "docs": [
+          "README.md",
+          "packages/language-server/README.md",
+          "packages/vscode-aihu/README.md"
+        ],
+        "note": "The extension launches a published language-server binary through package exports; codemap cannot follow the executable path or prove the three package version ranges remain compatible."
+      }
+    ]
+  }
+}

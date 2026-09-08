@@ -25,7 +25,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/aihu-project/aihu"
+    "url": "https://github.com/aihu-project/aihu-language",
+    "directory": "packages/vscode-aihu"
   },
   "contributes": {
     "languages": [
@@ -64,6 +65,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "vscode:prepublish": "tsc -p tsconfig.json",
     "build:vsix": "vsce package",
     "vsce:package": "vsce package",

@@ -1,0 +1,44 @@
+{
+  "name": "aihu-language",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TypeScript tooling and editor integrations for Aihu Single File Components",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aihu-project/aihu-language"
+  },
+  "packageManager": "bun@1.3.14",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run build:tsc && bun run build:language-server && bun run build:vscode",
+    "build:tsc": "bun run --cwd packages/tsc build",
+    "build:language-server": "bun run --cwd packages/language-server build",
+    "build:vscode": "bun run --cwd packages/vscode-aihu build",
+    "typecheck": "bun run build:tsc && bun run typecheck:tsc && bun run typecheck:language-server && bun run typecheck:vscode",
+    "typecheck:tsc": "bun run --cwd packages/tsc typecheck",
+    "typecheck:language-server": "bun run --cwd packages/language-server typecheck",
+    "typecheck:vscode": "bun run --cwd packages/vscode-aihu typecheck",
+    "test": "bun run build:tsc && bun run test:tsc && bun run test:language-server",
+    "test:tsc": "bun run --cwd packages/tsc test",
+    "test:language-server": "bun run --cwd packages/language-server test",
+    "lint": "biome ci .",
+    "check:boundaries": "bun scripts/check-boundaries.ts",
+    "package": "bun run package:npm && bun run package:vscode",
+    "package:npm": "bun pm pack --dry-run --cwd packages/tsc && bun pm pack --dry-run --cwd packages/language-server",
+    "package:vscode": "bun run --cwd packages/vscode-aihu vsce:package -- --no-dependencies --out /tmp/aihu-language.vsix",
+    "check": "bun run lint && bun run check:boundaries && bun run typecheck && bun run test && bun run build && bun run package"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "rolldown": "^1.0.0-beta.53",
+    "rolldown-plugin-dts": "^0.23.2",
+    "typescript": "^5.6.2",
+    "vitest": "^3.2.4"
+  }
+}

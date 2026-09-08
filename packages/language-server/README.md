@@ -4,9 +4,7 @@
 
 Cross-editor Language Server (aihu-language-server) for .aihu Single File Components — diagnostics, hover, completion, and quick-fix code actions.
 
-Held-private workspace package. Not yet published to npm.
-
-> **Status:** Held private — not yet published to npm. See [v1.1 roadmap](../../docs/roadmap/SUMMARY.md) for ratification gating (e.g. RFC #56 live-binding for `@aihu/plugin` enforcement).
+Published package maintained in the standalone [aihu-language repository](https://github.com/aihu-project/aihu-language).
 
 <!-- BEGIN_HANDWRITTEN: prose -->
 Cross-editor [Language Server Protocol](https://microsoft.github.io/language-server-protocol/)
@@ -16,9 +14,9 @@ Zed, …) can launch over stdio.
 
 ## Features
 
-- **Diagnostics** — shells out to the `aihu-compile` Rust binary with
-  `--machine-errors` (debounced 300 ms) and maps the structured errors onto LSP
-  diagnostics.
+- **Diagnostics** — uses the Volar TypeScript project and the published
+  `@aihu/compiler` bridge so editor diagnostics share the compiler's virtual
+  source model.
 - **Hover** — Markdown documentation for the 13 aihu macro keywords, aware of
   `@state` vs `@template` block context.
 - **Completion** — 9 `$`-triggered macro-kind snippets (context-filtered) and 5
@@ -28,14 +26,12 @@ Zed, …) can launch over stdio.
 
 ## Layout
 
-The package is laid out with a clean editor-agnostic seam (`src/core/`) so a
-future `@volar/language-core` virtual-code layer can consume the same
-diagnostics/hover/completion/code-action logic without touching the connection
-wiring (arch-4 §2.7). Volar is **not** adopted yet — that is a separate
-Phase-2 decision.
+The package is laid out with a clean editor-agnostic seam (`src/core/`) so the
+diagnostics, hover, completion, and code-action logic stays separate from the
+Volar connection wiring.
 
 - `src/core/*` — pure logic + the compiler bridge (no LSP connection objects).
-- `src/server.ts` — wires the core onto a `vscode-languageserver` connection.
+- `src/server.ts` — wires the core onto a Volar language-server connection.
 - `src/bin.ts` — the runnable `aihu-language-server` stdio entry.
 <!-- END_HANDWRITTEN: prose -->
 
@@ -92,7 +88,7 @@ bun add @aihu/language-server
 
 **Dependencies:**
 
-- `@aihu/compiler` — `^1.3.5`
+- `@aihu/compiler` — `^1.3.6`
 - `@volar/language-core` — `2.4.28`
 - `@volar/language-server` — `2.4.28`
 - `@volar/source-map` — `2.4.28`
@@ -110,10 +106,10 @@ bun add @aihu/language-server
 <!-- BEGIN_AUTOGEN: see-also -->
 <!-- regenerate: bun scripts/sync-readme.ts (also runs in pre-commit + CI) -->
 
-- [@aihu/tsc](../tsc)
+- [@aihu/tsc](https://github.com/aihu-project/aihu-language/tree/main/packages/tsc)
 - [@aihu/compiler](https://github.com/aihu-project/aihu-compiler)
-- [vscode-aihu](../vscode-aihu)
-- [Aihu framework root](../../README.md)
+- [vscode-aihu](https://github.com/aihu-project/aihu-language/tree/main/packages/vscode-aihu)
+- [Aihu framework root](https://github.com/aihu-project/aihu)
 
 <sub><i>Auto-generated against `@aihu/language-server@0.4.1`.</i></sub>
 

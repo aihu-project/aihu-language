@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.vsix
+.moon/
+.vite/
+.DS_Store
+.env
+.env.*
+.codemap/*
+!.codemap/config.json

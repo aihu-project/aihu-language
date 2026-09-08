@@ -6,7 +6,7 @@
   "description": "aihu-tsc — `tsc` for projects containing .aihu Single File Components. Type-checks .aihu sources as virtual TypeScript, with no .aihu.ts files written to disk.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aihu-project/aihu.git",
+    "url": "https://github.com/aihu-project/aihu-language",
     "directory": "packages/tsc"
   },
   "bin": {
@@ -34,7 +34,7 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@aihu/compiler": "^1.3.2",
+    "@aihu/compiler": "^1.3.6",
     "@volar/typescript": "2.4.28",
     "@volar/language-core": "2.4.28"
   },

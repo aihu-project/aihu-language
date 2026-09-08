@@ -5,11 +5,26 @@
  * invoked directly, with no orchestrating CLI command threading flags in —
  * see the file's own doc comment).
  */
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { access, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
-import { afterAll, describe, expect, it } from 'vitest'
+import { afterAll, describe, expect, it, vi } from 'vitest'
 import { loadTscProjectConfig } from '../src/load-project-config.ts'
+
+;(vi.mock as any)(
+  '@aihu/app',
+  () => ({
+    loadAihuConfig: async (root: string) => {
+      try {
+        await access(join(root, 'vite.config.ts'))
+      } catch {
+        return null
+      }
+      return { config: { compiler: { target: 'client' }, typecheck: { strictTemplates: true } } }
+    },
+  }),
+  { virtual: true },
+)
 
 describe('loadTscProjectConfig', () => {
   it('returns {} when the directory has no vite.config.ts', async () => {
@@ -21,12 +36,10 @@ describe('loadTscProjectConfig', () => {
     }
   })
 
-  describe('real vite.config.ts', () => {
-    // Created UNDER the repo root (not /tmp) so Node's upward module
-    // resolution from the fixture reaches this monorepo's own @aihu/app —
-    // loadAihuConfig() uses Vite's real loadConfigFromFile, which bundles
-    // the config file's own `import { viteAihuPlugin } from '@aihu/app'`
-    // and needs that specifier to actually resolve.
+  describe('configured vite.config.ts', () => {
+    // The app loader is mocked above because @aihu/tsc deliberately does not
+    // depend on the full app runtime. This keeps the test focused on the
+    // config-shape boundary that tsc consumes.
     let dir: string
 
     afterAll(async () => {

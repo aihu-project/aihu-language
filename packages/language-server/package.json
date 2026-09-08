@@ -38,7 +38,7 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@aihu/compiler": "^1.3.5",
+    "@aihu/compiler": "^1.3.6",
     "@volar/language-core": "2.4.28",
     "@volar/language-server": "2.4.28",
     "@volar/source-map": "2.4.28",
@@ -50,10 +50,10 @@
   "description": "Cross-editor Language Server (aihu-language-server) for .aihu Single File Components — diagnostics, hover, completion, and quick-fix code actions.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aihu-project/aihu.git",
+    "url": "https://github.com/aihu-project/aihu-language",
     "directory": "packages/language-server"
   },
-  "homepage": "https://github.com/aihu-project/aihu/tree/main/packages/language-server#readme",
+  "homepage": "https://github.com/aihu-project/aihu-language/tree/main/packages/language-server#readme",
   "bugs": "https://github.com/aihu-project/aihu/issues",
   "publishConfig": {
     "access": "public"

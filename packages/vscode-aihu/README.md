@@ -4,9 +4,7 @@
 
 Syntax highlighting, snippets, and language support for .aihu Single File Components
 
-Held-private workspace package. Not yet published to npm.
-
-> **Status:** Held private — not yet published to npm. See [v1.1 roadmap](../../docs/roadmap/SUMMARY.md) for ratification gating (e.g. RFC #56 live-binding for `@aihu/plugin` enforcement).
+Extension maintained in the standalone [aihu-language repository](https://github.com/aihu-project/aihu-language).
 
 <!-- BEGIN_HANDWRITTEN: prose -->
 _(Hand-written prose lives in this block. Replace this placeholder; everything below is auto-generated.)_
@@ -68,8 +66,8 @@ _No `exports` field in `package.json`. Main entry: `./dist/client/index.js`._
 <!-- BEGIN_AUTOGEN: see-also -->
 <!-- regenerate: bun scripts/sync-readme.ts (also runs in pre-commit + CI) -->
 
-- [arch-4 (DX tools)](../../docs/roadmap/arch-4-dx-tools.md)
-- [Aihu framework root](../../README.md)
+- [@aihu/language-server](https://github.com/aihu-project/aihu-language/tree/main/packages/language-server)
+- [Aihu framework root](https://github.com/aihu-project/aihu)
 
 <sub><i>Auto-generated against `vscode-aihu@1.0.0`.</i></sub>
 
