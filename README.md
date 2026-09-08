@@ -26,8 +26,23 @@ bun install --frozen-lockfile
 bun run check
 ```
 
-`bun run check` runs lint, boundary checks, TypeScript checks, package tests,
-all builds, npm pack dry-runs, and a VS Code extension package dry-run.
+`bun run check` runs lint, boundary checks, packed npm-manifest checks, TypeScript
+checks, package tests, all builds, npm pack dry-runs, and a VS Code extension
+package dry-run.
+
+## Releases
+
+The npm packages are released together from a `language-v<language-server-version>`
+tag. The release workflow validates the exact tag, runs the full workspace gate,
+publishes `@aihu/tsc` first, verifies that version is available on npm, and then
+publishes `@aihu/language-server`. Re-running a release safely skips package
+versions that already exist. The workflow requires the repository `NPM_TOKEN`
+secret.
+
+`vscode-aihu` is a separate VS Code Marketplace artifact. Its `fellwork` publisher
+identity and `1.0.0` version are intentionally unchanged here; package and
+Marketplace credentials, review, and release cadence remain manual and separate
+from npm publishing.
 
 ## Package documentation
 

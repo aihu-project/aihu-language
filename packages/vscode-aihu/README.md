@@ -15,7 +15,7 @@ _(Hand-written prose lives in this block. Replace this placeholder; everything b
 <!-- BEGIN_AUTOGEN: install -->
 <!-- regenerate: bun scripts/sync-readme.ts (also runs in pre-commit + CI) -->
 
-Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=fellwork.vscode-aihu) (publishing as part of v1.1 LSP work).
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=fellwork.vscode-aihu). Marketplace publishing remains a separate manual release owned by the `fellwork` publisher.
 
 <sub><i>Auto-generated against `vscode-aihu@1.0.0`.</i></sub>
 

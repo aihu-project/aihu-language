@@ -1,5 +1,12 @@
 # @aihu/tsc
 
+## 0.3.4
+
+### Patch Changes
+
+- Correct the package repository metadata to `aihu-project/aihu-language` and
+  update the published compiler contract to `@aihu/compiler@^1.3.6`.
+
 ## 0.3.3
 
 ### Patch Changes
