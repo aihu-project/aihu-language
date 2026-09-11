@@ -12,6 +12,17 @@ const external = [
   'vscode-languageserver-textdocument',
 ]
 
+// TypeScript's bundled CJS internals (e.g. getNodeSystem's case-sensitivity
+// check) reference the bare `__filename`/`__dirname` globals that only exist
+// in CommonJS. rolldown's ESM output doesn't shim them, so without this
+// banner every entry crashes with `ReferenceError: __filename is not defined`
+// as soon as that code path runs. Assigning through `globalThis` (rather than
+// declaring local bindings) lets the free-variable lookups already baked into
+// the bundled code resolve without rolldown's renamer needing to touch them.
+const nodeGlobalsShimBanner = `import * as __aihuNodeUrl from "node:url";
+globalThis.__filename = __aihuNodeUrl.fileURLToPath(import.meta.url);
+globalThis.__dirname = __aihuNodeUrl.fileURLToPath(new URL(".", import.meta.url));`
+
 export default defineConfig([
   // ---------------------------------------------------------------------------
   // Library entries — server connection layer + editor-agnostic core surface.
@@ -29,6 +40,7 @@ export default defineConfig([
       format: 'esm',
       sourcemap: true,
       entryFileNames: '[name].js',
+      banner: nodeGlobalsShimBanner,
     },
     plugins: [dts()],
   },
@@ -44,7 +56,7 @@ export default defineConfig([
     output: {
       dir: 'dist',
       format: 'esm',
-      banner: '#!/usr/bin/env node',
+      banner: `#!/usr/bin/env node\n${nodeGlobalsShimBanner}`,
       entryFileNames: '[name].js',
     },
   },
