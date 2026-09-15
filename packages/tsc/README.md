@@ -7,7 +7,37 @@ aihu-tsc — `tsc` for projects containing .aihu Single File Components. Type-ch
 Published package maintained in the standalone [aihu-language repository](https://github.com/aihu-project/aihu-language).
 
 <!-- BEGIN_HANDWRITTEN: prose -->
-_(Hand-written prose lives in this block. Replace this placeholder; everything below is auto-generated.)_
+`aihu-tsc` is a type-CHECKER (`--noEmit`), not a general-purpose `tsc`: it reads
+a project's `tsconfig.json`, projects `.aihu` sources into the TypeScript
+program as virtual TypeScript (via Volar's `proxyCreateProgram`, the same
+mechanism `vue-tsc` uses), and reports diagnostics against the `.aihu` file
+itself — on the line the author wrote, with no `.aihu.ts` sidecar ever written
+to disk. Emitting from `.aihu` is `aihu build`'s job, not this tool's.
+
+## Usage
+
+```bash
+aihu-tsc [-p <tsconfig|dir>] [--strict-templates] [--target <client|server|universal>]
+```
+
+Exits non-zero when there are type errors, so it drops straight into a
+`typecheck` script in place of `tsc --noEmit` (the scaffolded default is the
+bare `"typecheck": "aihu-tsc"`, no flags).
+
+- `-p, --project <tsconfig|dir>` — path to a `tsconfig.json`, or a directory
+  containing one. Defaults to the current working directory.
+- `--strict-templates` — also report implicit-`any` diagnostics inside
+  `.aihu` state blocks (suppressed by default, since `.aihu` state bodies were
+  never type-checked before this tool existed).
+- `--target <client|server|universal>` — build target threaded to the
+  compiler's sidecar compilation; affects type-check accuracy for
+  target-specific APIs.
+
+`--strict-templates` and `--target` are OR'd with (never override-to-off) the
+project's own `vite.config.ts` (`AihuConfig.typecheck.strictTemplates` /
+`AihuConfig.compiler.target`) — invoked bare, this CLI is the only place that
+config gets threaded in, since `run()` itself is synchronous and has no other
+caller that reads it.
 <!-- END_HANDWRITTEN: prose -->
 
 ## Install
