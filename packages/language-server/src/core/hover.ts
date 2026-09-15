@@ -479,7 +479,7 @@ const HOVER_TABLE: Record<string, string> = {
   $tokens: [
     '**aihu @style macro: `$tokens`**',
     '',
-    'Import design tokens from project config (`aihu.config.ts` `style.tokens`).',
+    "Import design tokens from the project's CSS engine configuration (see `@aihu/css-engine`'s theme configuration — not `aihu.config.ts`, which has no `style.tokens` key).",
     '',
     'Lowering depends on mode:',
     '- `tokens` mode → CSS custom properties (e.g. `--color-primary`)',
