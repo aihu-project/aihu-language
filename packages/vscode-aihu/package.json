@@ -67,7 +67,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "vscode:prepublish": "tsc -p tsconfig.json",
-    "build:vsix": "vsce package",
+    "build:vsix": "bun run ../../scripts/package-vscode.ts",
     "vsce:package": "vsce package",
     "vsce:publish": "vsce publish"
   },
