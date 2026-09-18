@@ -22,7 +22,6 @@
  * See: .context/m2/a4/round-1/architect-brief-volar-refactor.md §6.1
  */
 
-import { loadTscProjectConfig } from '@aihu/tsc'
 import {
   createConnection,
   createTypeScriptProject,
@@ -31,6 +30,7 @@ import {
 import ts from 'typescript'
 import { create as createTypeScriptServices } from 'volar-service-typescript'
 import { URI } from 'vscode-uri'
+import { loadLspProjectConfig } from './core/project-config.ts'
 import {
   createAihuLanguagePlugin,
   createAihuLanguageServicePlugin,
@@ -89,9 +89,9 @@ export function startServer(): void {
     // regardless of what the project actually configured. Best-effort: never
     // blocks initialize, and a client that gave us no workspace root (or a
     // project with no vite.config.ts) falls back to the previous behavior
-    // exactly (see loadTscProjectConfig's own doc comment).
+    // exactly (see loadLspProjectConfig's own doc comment).
     const root = workspaceRoot(params)
-    const { target } = root ? await loadTscProjectConfig(root) : {}
+    const { target } = root ? await loadLspProjectConfig(root) : {}
 
     // #486 step 5 — the TypeScript project consumes the SAME
     // compileSidecar-backed language plugin `aihu-tsc` runs, so template
