@@ -89,13 +89,9 @@ bun add @aihu/language-server
 **Dependencies:**
 
 - `@aihu/compiler` — `^1.3.6`
-- `@volar/language-core` — `2.4.28`
-- `@volar/language-server` — `2.4.28`
-- `@volar/source-map` — `2.4.28`
-- `vscode-uri` — `3.1.0`
 - `@aihu/tsc` — `^0.3.4`
-- `typescript` — `^5.6.2`
-- `volar-service-typescript` — `0.0.71`
+- `vscode-languageserver` — `^9.0.1`
+- `vscode-languageserver-textdocument` — `^1.0.11`
 
 <sub><i>Auto-generated against `@aihu/language-server@0.4.2`.</i></sub>
 
