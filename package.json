@@ -41,6 +41,6 @@
     "rolldown": "^1.0.0-beta.53",
     "rolldown-plugin-dts": "^0.23.2",
     "typescript": "^5.6.2",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.11"
   }
 }
