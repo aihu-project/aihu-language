@@ -31,6 +31,7 @@ export {
   parseMachineErrors,
 } from './diagnostics.ts'
 export { getBlockContext, getHoverContent, getMacroAtPosition } from './hover.ts'
+export { loadLspProjectConfig } from './project-config.ts'
 export {
   type AihuCodeMapping,
   type AihuSourcePosition,
